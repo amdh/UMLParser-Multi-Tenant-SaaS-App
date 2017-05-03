@@ -1,0 +1,90 @@
+<link rel='stylesheet' href='/stylesheets/grader.css' />
+<link rel='stylesheet' href='/stylesheets/login.css' />
+
+<div ng-controller='graderController' class="radioDemo2 bidi" style="background-color: antiquewhite">
+    <h2>Tenant List</h2>
+    <md-divider></md-divider>
+
+    <md-radio-group ng-model="selectedId" >
+        <div ng-repeat='tenant in tenants' class="row">
+            <div flex layout='row' layout-padding layout-align="start center" >
+
+                <div flex style="max-width:200px;">
+                    {{tenant.title}}
+                </div>
+                <md-radio-button flex
+                                 ng-value="person.id"
+                                 class="md-primary" >
+
+                    {{tenant.name}}
+
+                </md-radio-button>
+
+            </div>
+        </div>
+    </md-radio-group>
+
+    <md-divider></md-divider>
+    <div class="summary" flex layout="row" layout-align="space-between center">
+        <div flex-initial>
+            <span class="title">Selected Tenant</span>: <span class="md-checked">{{selectedTenant()}}</span>
+        </div>
+    </div>
+    <form name="form2" class="form-style-9">
+        <ul class="form-style-1">
+            <li>
+                <input type="file" ng-file-select="fileSelected($files)" accept="'image/*'">
+                <input type="submit" ng-click="uploadFile()" >
+            </li>
+            <!--<li>
+                <input type = "file" file-model = "myFile"/>
+                <button ng-click = "uploadFile()">Upload</button>
+            </li>-->
+            <li>
+                <img src="">
+            </li>
+        </ul>
+    </form>
+
+    <form name="form1" class="form-style-9">
+        <ul class="form-style-1">
+
+            <li>
+                <label ng-model="msg"> <span class="required"></span>{{msg}}</label>
+            </li>
+            <li>
+                <label>StudentID <span class="required">*</span></label>
+                <input required=true type="text" name="username" class="field-long" ng-model="studentid" />
+            </li>
+            <li>
+                <label>Student Name<span class="required">*</span></label>
+                <input required=true type="password" name="passwd" class="field-long" ng-model="studentname" />
+            </li>
+            <li>
+                <label>Grades<span class="required">*</span></label>
+                <input required=true type="password" name="passwd" class="field-long" ng-model="passwd" />
+            </li>
+            <li>
+                <label>Grades<span class="required">*</span></label>
+                <textarea required="true" class="field-long" ng-model="comments"></textarea>
+
+            </li>
+            <li>
+                <button style="width: 30%" ng-click = "submitGrades()">Submit </button>
+            </li>
+
+            <li>
+                <label ng-model="msg"></label>
+            </li>
+        </ul>
+    </form>
+</div>
+
+<style>
+
+    html[dir="rtl"] .bidi {
+        padding-right: 20px;
+        padding-left:0;
+    }
+
+</style>
