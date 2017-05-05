@@ -1,18 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('./database');
+
+
 var submitGrades = function (req, res) {
     console.log("submitGrades");
 
     console.log(req.body);
 
-    var TenantInsertQuery = "INSERT INTO tenant_data VALUES ('" +
+    var TenantInsertQuery = "INSERT INTO "+req.body.tenant_table+"( name , located_at , studentID, studentName, grading , comments) VALUES ('" +
         req.body.tenant_name +
-        "','" + req.body.correctness +
-        "','" + req.body.marks +
-        "','" + req.body.comment +"')";
+        "','" + req.body.located_at +
+        "','" + req.body.studentid +
+        "','" + req.body.studentname +
+        "','" + req.body.grade +
+        "','" + req.body.gradecomments +"')";
 
     console.log("QUERY to enter tenant details is: " + TenantInsertQuery);
+
     mysql.fetchData(function(err, results) {
 
         if (err) {

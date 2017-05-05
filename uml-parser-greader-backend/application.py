@@ -80,13 +80,12 @@ def getImage():
     print("return image")
     with open("output.png", "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
-        #resp = jsonify({"status":"success", "result": encoded_string})
-        #resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp = jsonify({"result": encoded_string})
+        resp.headers['Access-Control-Allow-Origin'] = '*'
 
         clean_dir()
-    return send_file("output.png", mimetype='image/png')
-
-       # return resp
+    #return send_file("output.png", mimetype='image/png')
+        return resp
 
 if __name__ == "__main__":
     print("running on 0.0.0.0")
