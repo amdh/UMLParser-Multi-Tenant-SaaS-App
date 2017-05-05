@@ -84,8 +84,10 @@ def getImage():
         resp.headers['Access-Control-Allow-Origin'] = '*'
 
         clean_dir()
-    #return send_file("output.png", mimetype='image/png')
+
         return resp
+    #return send_file("output.png", mimetype='image/png')
+        
 
 if __name__ == "__main__":
     print("running on 0.0.0.0")
