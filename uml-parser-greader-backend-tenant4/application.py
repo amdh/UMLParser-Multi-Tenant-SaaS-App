@@ -56,7 +56,7 @@ def callParser(args,inputfilepath):
     #subprocess.call(['java', '-jar']+list(args))
 
     args= ["java", "-jar", "umlparser.jar" ,"parser/test1", "output.png"]
-    arg_list = ["java", "-jar", "umlparser.jar" ,inputfilepath, "output.png"]
+    arg_list = ["java", "-jar", "umlShruti.jar" ,inputfilepath, "output.png"]
    
     popen = subprocess.Popen(arg_list, stdout=subprocess.PIPE)
     popen.wait()
