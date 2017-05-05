@@ -5,9 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
-var multer = require('multer');
-var routes = require('./routes/index');
+//var multer = require('multer');
+var routes = require('./routes');
 var users = require('./routes/users');
+var grader = require('./routes/grader');
+
 
 var app = express();
 
@@ -22,11 +24,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/templates/public', express.static('public'))
 
 app.use('/', routes);
-app.use('/users', users);
-
-
+//app.get('/getGrader',grader.redirectHome);
+app.post('/callgrader',grader.submitGrades);
 
 
 // catch 404 and forward to error handler

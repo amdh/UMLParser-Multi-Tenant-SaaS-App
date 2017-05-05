@@ -1,17 +1,45 @@
 var express = require('express');
 var router = express.Router();
+var mysql = require('./database');
+var submitGrades = function (req, res) {
+    console.log("submitGrades");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-    res.send('respond with a resource');
-});
+    console.log(req.body);
 
-router.post('/api/upload', function(req, res , next){
-    console.log("upload code called...submit the zip file to s3");
-    });
+    var TenantInsertQuery = "INSERT INTO tenant_data VALUES ('" +
+        req.body.tenant_name +
+        "','" + req.body.correctness +
+        "','" + req.body.marks +
+        "','" + req.body.comment +"')";
 
-router.post('/api/submitGrade', function(req, res , next){
-    console.log("submit grade called...save grades to db");
-});
+    console.log("QUERY to enter tenant details is: " + TenantInsertQuery);
+    mysql.fetchData(function(err, results) {
 
-module.exports = router;
+        if (err) {
+            throw err;
+        } else {
+            if (results.length > 0) {
+
+                console.log("something went wrong!");
+                var json_responses = {
+                    "statusCode" : 200
+                };
+                res.send(json_responses);
+
+            } else {
+
+                console.log("tenant details inserted!");
+                json_responses = {
+                    "statusCode" : 401
+                };
+                res.send(json_responses);
+
+            }
+        }
+    }, TenantInsertQuery);
+};
+
+module.exports = {
+    submitGrades
+};
+
