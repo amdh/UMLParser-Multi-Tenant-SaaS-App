@@ -20,11 +20,14 @@ function fetchData(callback, sqlQuery) {
     var connection = getConnection();
 
     connection.query(sqlQuery, function(err, rows, fields) {
+        console.log("DB Results:" + rows);
+        console.log("fields :" +fields);
+
         if (err) {
             console.log("ERROR: " + err.message);
         } else { // return err or result
-            console.log("DB Results:" + rows);
-            callback(err, rows);
+            console.log("DB Results size:" + rows.size);
+            callback(err, JSON.stringify(rows));
         }
     });
     console.log("\nConnection closed...");

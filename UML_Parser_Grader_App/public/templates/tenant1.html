@@ -1,4 +1,5 @@
-<div>
+<div id="tenant_area">
+    <label>{{tenant_msg}}</label>
     <form name="form2" class="form-style-9 check-element animate-show-hide" id="upright" >
         <ul class="form-style-1">
             <li>
@@ -7,24 +8,9 @@
             <li>
                 <button ng-click = "uploadFile()">upload me</button>
             </li>
-            <!-- <li>
-                 <br>
-                 <br>
-                 <button ng-click="generateUML()">Generate UML Diagram</button>
-                 <br>
-                 <br>
-             </li>-->
-            <!-- <li>
 
-                 <input type="file" ng-file-select="fileSelected($files)" accept="'image/*'">
-                 <input type="submit" ng-click="uploadFile()" >
-             </li>-->
-            <!--<li>
-                <input type = "file" file-model = "myFile"/>
-                <button ng-click = "uploadFile()">Upload</button>
-            </li>-->
             <li>
-                <br /> <img src="data:image/JPEG;base64,{{umlimg}}" ng-model="umlimg" width="400" height="400">
+                <br /> <img src="data:image/JPEG;base64,{{umlimg}}" ng-model="umlimg" width="500" height="300">
             </li>
         </ul>
     </form>
@@ -35,10 +21,10 @@
             <li>
                 <label ng-model="msg"> <span class="required"></span>{{msg}}</label>
             </li>
-            <li>
+          <!--  <li>
                 <label>StudentID <span class="required">*</span></label>
                 <input required=true type="text" name="username" class="field-long" ng-model="studentid" />
-            </li>
+            </li>-->
             <li>
                 <label>Student Name<span class="required">*</span></label>
                 <input required=true type="text" name="passwd" class="field-long" ng-model="studentname" />

@@ -96,3 +96,8 @@ select{
     height: 30%;
 
 }
+
+#tenant_area{
+    border-style: groove;
+    background-color: #dddddd;
+}

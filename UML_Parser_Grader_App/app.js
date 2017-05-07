@@ -28,7 +28,10 @@ app.use('/templates/public', express.static('public'))
 
 app.use('/', routes);
 //app.get('/getGrader',grader.redirectHome);
-app.post('/callgrader',grader.submitGrades);
+app.post('/callgraderT1',grader.submitGradesT1);
+app.post('/callgraderT2',grader.submitGradesT2);
+app.post('/callgraderT3',grader.submitGradesT3);
+app.post('/callgraderT4',grader.submitGradesT4);
 
 
 // catch 404 and forward to error handler
