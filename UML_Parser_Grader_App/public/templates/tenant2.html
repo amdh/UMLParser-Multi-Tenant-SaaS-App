@@ -25,7 +25,7 @@
                 <button ng-click = "uploadFile()">Upload</button>
             </li>-->
             <li>
-                <br /> <img ng-src="{{umlimg}}"  width="500" height="300">
+                <br /> <img src="data:image/JPEG;base64,{{umlimg}}" ng-model="umlimg"  width="600" height="400">
             </li>
         </ul>
     </form>
@@ -37,12 +37,15 @@
                 <label ng-model="msg"> <span class="required"></span>{{msg}}</label>
             </li>
             <li>
+                <label ng-model="msg"> <span class="required"></span>Tenant 2 by Kaushik Shingne</label>
+            </li>
+            <li>
                 <label>StudentID <span class="required">*</span></label>
                 <input required=true type="number" name="studentid" class="field-long" ng-model="studentid" />
             </li>
             <li>
                 <label>Student University<span class="required">*</span></label>
-                <input required=true type="text" name="univ" class="field-long" ng-model="studentname" />
+                <input required=true type="text" name="univ" class="field-long" ng-model="univ" />
             </li>
             <li >
                 <label>
@@ -64,6 +67,7 @@
             </li>
             <li>
                 <button style="width: 30%" ng-click = "submitGrades()">Submit </button>
+                <button style="width: 30%; margin-right: 20px" ng-click = "reset()">Reset </button>
             </li>
 
             <li>

@@ -63,10 +63,12 @@ tenant.service('fileUpload', ['$http', function ($http) {
     }
 }]);
 
-tenant.controller("tenant1_controller",['$scope','$http', 'fileUpload', function($scope,$http, fileUpload){
+tenant.controller("tenant1_controller",['$scope','$http', 'fileUpload', '$route', function($scope,$http, fileUpload , $route){
     console.log("tenant1_controller");
     $scope.graderChecked = true;
     $scope.msg = 'Grading!!'
+
+    console.log($scope.form1);
     $scope.uploadFile = function () {
 
         console.log("uploadFile");
@@ -84,8 +86,13 @@ tenant.controller("tenant1_controller",['$scope','$http', 'fileUpload', function
         });
     };
 
-    $scope.generateUML = function(){
-
+    $scope.reset = function(){
+        $scope.myFile = "";
+        $scope.umlimg = "";
+        $scope.msg = " Grading !!";
+        $scope.studentname = "";
+        $scope.grade = "";
+        $scope.gradecomments = "";
     }
 
     $scope.submitGrades = function(){
@@ -108,6 +115,10 @@ tenant.controller("tenant1_controller",['$scope','$http', 'fileUpload', function
             console.log("grading completed");
             console.log(data);
             $scope.msg = " Grading completed";
+           // $scope.form1.reset();
+           // $scope.form2.reset();
+            //setTimeout($route.reload(), 20000);
+
         }).error(function(error) {
             $scope.validlogin = true;
             $scope.invalid_login = true;
@@ -118,117 +129,8 @@ tenant.controller("tenant1_controller",['$scope','$http', 'fileUpload', function
 
 
 
-tenant.controller("tenant2_controller",['$scope','$http', 'fileUpload', function($scope,$http, fileUpload){
+tenant.controller("tenant2_controller",['$scope','$http', 'fileUpload', '$route',function($scope,$http, fileUpload , $route){
     console.log("tenant2_controller");
-    $scope.graderChecked = true;
-    $scope.msg = 'Grading!!'
-    $scope.uploadFile = function () {
-
-        console.log("uploadFile");
-        var file = $scope.myFile;
-
-        console.log('file is ' );
-        console.dir(file);
-
-        var uploadUrl = "http://127.0.0.1:5003/api/upload";
-        fileUpload.uploadFileToUrl(file, uploadUrl, function(data){
-            console.log("callback from upload");
-            console.log(data);
-            $scope.umlimg = data.result
-            $scope.graderChecked = true;
-        });
-    };
-
-    $scope.generateUML = function(){
-
-    }
-
-    $scope.submitGrades = function(){
-        console.log("submit grade");
-        var tenant_data = {
-            "tenant_id" : "TA-2",
-            "tenant_table" : "tenant_4_kaushik",
-            "tenant_name" :"Kaushik",
-            "located_at" : "SJSU", //location
-            "studentid" : $scope.studentid,
-            "studentname" : $scope.studentname,
-            "grade" : $scope.grade,
-            "gradecomments" : $scope.gradecomments
-        }
-
-        $http({
-            method : "POST",
-            url : '/callgrader',
-            data : tenant_data,
-            headers: {'Content-Type': 'application/json'}
-        }).success(function(data) {
-            console.log("grading completed");
-            $scope.msg = " Grading completed";
-        }).error(function(error) {
-            $scope.validlogin = true;
-            $scope.invalid_login = true;
-        });
-    };
-
-}]);
-
-
-tenant.controller("tenant3_controller",['$scope','$http', 'fileUpload', function($scope,$http, fileUpload){
-    console.log("tenant3_controller");
-    $scope.graderChecked = true;
-    $scope.msg = 'Grading!!'
-    $scope.uploadFile = function () {
-
-        console.log("uploadFile");
-        var file = $scope.myFile;
-
-        console.log('file is ' );
-        console.dir(file);
-
-        var uploadUrl = "http://127.0.0.1:5004/api/upload";
-        fileUpload.uploadFileToUrl(file, uploadUrl, function(data){
-            console.log("callback from upload");
-            console.log(data);
-            $scope.umlimg = data.result
-            $scope.graderChecked = true;
-        });
-    };
-
-    $scope.generateUML = function(){
-
-    }
-
-    $scope.submitGrades = function(){
-        console.log("submit grade");
-        var tenant_data = {
-            "tenant_id" : "TA-3",
-            "tenant_table" : "tenant_3_chetan",
-            "tenant_name" :"Fang",
-            "located_at" : "SJSU", //location
-            "studentid" : $scope.studentid,
-            "studentname" : $scope.studentname,
-            "grade" : $scope.grade,
-            "gradecomments" : $scope.gradecomments
-        }
-
-        $http({
-            method : "POST",
-            url : '/callgrader',
-            data : tenant_data,
-            headers: {'Content-Type': 'application/json'}
-        }).success(function(data) {
-            console.log("grading completed");
-            $scope.msg = " Grading completed";
-        }).error(function(error) {
-            $scope.validlogin = true;
-            $scope.invalid_login = true;
-        });
-    };
-
-}]);
-
-tenant.controller("tenant4_controller",['$scope','$http', 'fileUpload', function($scope,$http, fileUpload){
-    console.log("tenant4_controller");
     $scope.graderChecked = true;
     $scope.msg = 'Grading!!'
     $scope.uploadFile = function () {
@@ -248,8 +150,141 @@ tenant.controller("tenant4_controller",['$scope','$http', 'fileUpload', function
         });
     };
 
-    $scope.generateUML = function(){
+    $scope.reset = function(){
+        setTimeout($route.reload(), 20000);
+        $scope.myFile = "";
+        $scope.umlimg = "";
+        $scope.msg = " Grading !!";
+        $scope.studentid = "";
+        $scope.univ = "";
+        $scope.grade = "";
+        $scope.gradecomments = "";
+    }
 
+    $scope.submitGrades = function(){
+        console.log("submit grade");
+        var tenant_data = {
+            "tenant_id" : "TA-2",
+            "tenant_table" : "tenant_2_kaushik",
+            "tenant_name" :"Kaushik",
+            "located_at" : "SJSU", //location
+            "studentid" : $scope.studentid,
+            "univ" : $scope.univ,
+            "grade" : $scope.grade,
+            "gradecomments" : $scope.gradecomments
+        }
+
+        $http({
+            method : "POST",
+            url : '/callgraderT2',
+            data : tenant_data,
+            headers: {'Content-Type': 'application/json'}
+        }).success(function(data) {
+            console.log("grading completed");
+            $scope.msg = " Grading completed";
+
+
+        }).error(function(error) {
+            $scope.validlogin = true;
+            $scope.invalid_login = true;
+        });
+    };
+
+}]);
+
+
+tenant.controller("tenant3_controller",['$scope','$http', 'fileUpload', '$route', function($scope,$http, fileUpload, $route){
+    console.log("tenant3_controller");
+    $scope.graderChecked = true;
+    $scope.msg = 'Grading!!'
+    $scope.uploadFile = function () {
+
+        console.log("uploadFile");
+        var file = $scope.myFile;
+
+        console.log('file is ' );
+        console.dir(file);
+
+        var uploadUrl = "http://127.0.0.1:5003/api/upload";
+        fileUpload.uploadFileToUrl(file, uploadUrl, function(data){
+            console.log("callback from upload");
+            console.log(data);
+            $scope.umlimg = data.result
+            $scope.graderChecked = true;
+        });
+    };
+
+    $scope.reset = function(){
+        setTimeout($route.reload(), 20000);
+        $scope.myFile = "";
+        $scope.umlimg = "";
+        $scope.msg = " Grading !!";
+        $scope.studentid = "";
+        $scope.grade = "";
+        $scope.gradecomments = "";
+    }
+
+    $scope.submitGrades = function(){
+        console.log("submit grade");
+        var tenant_data = {
+            "tenant_id" : "TA-3",
+            "tenant_table" : "tenant_3_chetan",
+            "tenant_name" :"Chetan",
+            "located_at" : "SJSU", //location
+            "studentid" : $scope.studentid,
+            "studentname" : $scope.studentname,
+            "grade" : $scope.grade,
+            "gradecomments" : $scope.gradecomments
+        }
+
+        $http({
+            method : "POST",
+            url : '/callgraderT3',
+            data : tenant_data,
+            headers: {'Content-Type': 'application/json'}
+        }).success(function(data) {
+            console.log("grading completed");
+            $scope.msg = " Grading completed";
+
+
+        }).error(function(error) {
+            $scope.validlogin = true;
+            $scope.invalid_login = true;
+        });
+    };
+
+}]);
+
+tenant.controller("tenant4_controller",['$scope','$http', 'fileUpload', '$route', function($scope,$http, fileUpload , $route){
+    console.log("tenant4_controller");
+    $scope.graderChecked = true;
+    $scope.msg = 'Grading!!'
+    $scope.uploadFile = function () {
+
+        console.log("uploadFile");
+        var file = $scope.myFile;
+
+        console.log('file is ' );
+        console.dir(file);
+
+        var uploadUrl = "http://127.0.0.1:5004/api/upload";
+        fileUpload.uploadFileToUrl(file, uploadUrl, function(data){
+            console.log("callback from upload");
+            console.log(data);
+            $scope.umlimg = data.result
+            $scope.graderChecked = true;
+        });
+    };
+
+    $scope.reset = function(){
+        setTimeout($route.reload(), 20000);
+        $scope.myFile = "";
+        $scope.umlimg = "";
+        $scope.msg = " Grading !!";
+        $scope.studentid = "";
+        $scope.studentname = "";
+        $scope.grade = "";
+        $scope.gradecomments = "";
     }
 
     $scope.submitGrades = function(){
@@ -273,6 +308,8 @@ tenant.controller("tenant4_controller",['$scope','$http', 'fileUpload', function
         }).success(function(data) {
             console.log("grading completed");
             $scope.msg = " Grading completed";
+
+
         }).error(function(error) {
             $scope.validlogin = true;
             $scope.invalid_login = true;

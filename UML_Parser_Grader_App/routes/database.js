@@ -27,7 +27,7 @@ function fetchData(callback, sqlQuery) {
             console.log("ERROR: " + err.message);
         } else { // return err or result
             console.log("DB Results size:" + rows.size);
-            callback(err, JSON.stringify(rows));
+            callback(err, rows);//JSON.stringify(rows)
         }
     });
     console.log("\nConnection closed...");
