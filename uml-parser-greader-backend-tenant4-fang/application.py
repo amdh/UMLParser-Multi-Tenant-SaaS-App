@@ -22,7 +22,7 @@ def ping():
 	return json.dumps({"hello":"world"})
 
 
-@application.route("/api/upload", methods=['POST'])
+@application.route("/tenant4", methods=['POST'])
 def upload():
     print('upload file')
     file = request.files['file']

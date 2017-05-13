@@ -31,6 +31,7 @@ def upload():
     # Move the file form the temporal folder to
     # the upload folder we setup
     file.save(os.path.join(application.config['UPLOAD_FOLDER'], filename))
+    
     unzipFile(filename)
     generateUML(application.config['UNZIP_FOLDER']+os.path.splitext(filename)[0])
     return getImage()

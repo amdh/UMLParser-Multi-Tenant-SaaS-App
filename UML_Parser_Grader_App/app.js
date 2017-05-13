@@ -9,10 +9,10 @@ const fileUpload = require('express-fileupload');
 var routes = require('./routes');
 var users = require('./routes/users');
 var grader = require('./routes/grader');
-
+var cors = require('cors');
 
 var app = express();
-
+var router = express.Router();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -54,6 +54,10 @@ if (app.get('env') === 'development') {
     });
   });
 }
+
+app.use(cors);
+app.all('*',grader.all);
+app.options('*',grader.options);
 
 // production error handler
 // no stacktraces leaked to user

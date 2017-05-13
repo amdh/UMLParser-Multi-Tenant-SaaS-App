@@ -74,7 +74,7 @@ var submitGradesT2 = function (req, res) {
     var recordIDFromTenant = 0;
     console.log(req.body);
 
-    var TenantInsertQuery = "INSERT INTO "+req.body.tenant_table+"( name ,  studentid, grading , comments, univeristy) VALUES ('" +
+    var TenantInsertQuery = "INSERT INTO "+req.body.tenant_table+"( name ,  studentid, grading , commnets, university) VALUES ('" +
         req.body.tenant_name +
         "','" + req.body.studentid +
         "','" + req.body.grade +
@@ -271,7 +271,24 @@ var rec_id = recordIDFromTenant + "-TA4";
     },CommonTenantDataInsertQuery);
 };
 
+//following function takes care of cross origin requests. this is because chrome blocks
+//requests made to servers of other origins
+var all = function(req, res, next) {
+    // add details of what is allowed in HTTP request headers to the response headers
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Credentials', false);
+    res.header('Access-Control-Max-Age', '86400');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+    // the next() function continues execution and will move onto the requested URL/URI
+    next();
+};
+
+var options = function(req, res) {
+    res.sendStatus(200);
+};
+
 module.exports = {
-    submitGradesT1  , submitGradesT2 , submitGradesT3 , submitGradesT4
+    submitGradesT1  , submitGradesT2 , submitGradesT3 , submitGradesT4 , all , options
 };
 

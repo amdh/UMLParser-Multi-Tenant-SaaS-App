@@ -49,7 +49,11 @@ tenant.service('fileUpload', ['$http', function ($http) {
 
         $http.post(uploadUrl, fd, {
             transformRequest: angular.identity,
-            headers: {'Content-Type': undefined}
+            headers: {'Content-Type': undefined/*,
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'POST',
+                'Access-Control-Allow-Headers': 'Content-Type, Origin, X-Requested-With, Accept'*/}
         })
             .success(function(data){
                 console.log("returnign from upload");
@@ -77,7 +81,8 @@ tenant.controller("tenant1_controller",['$scope','$http', 'fileUpload', '$route'
         console.log('file is ' );
         console.dir(file);
 
-        var uploadUrl = "http://127.0.0.1:5001/api/upload";
+        var uploadUrl = "http://personal-project-1487156523.us-west-2.elb.amazonaws.com/tenant1 ";
+            //"http://ec2-35-164-135-163.us-west-2.compute.amazonaws.com:5001/api/upload";//
         fileUpload.uploadFileToUrl(file, uploadUrl, function(data){
             console.log("callback from upload");
             console.log(data);
@@ -141,7 +146,7 @@ tenant.controller("tenant2_controller",['$scope','$http', 'fileUpload', '$route'
         console.log('file is ' );
         console.dir(file);
 
-        var uploadUrl = "http://127.0.0.1:5002/api/upload";
+        var uploadUrl = "http://personal-project-1487156523.us-west-2.elb.amazonaws.com/tenant2";
         fileUpload.uploadFileToUrl(file, uploadUrl, function(data){
             console.log("callback from upload");
             console.log(data);
@@ -205,7 +210,7 @@ tenant.controller("tenant3_controller",['$scope','$http', 'fileUpload', '$route'
         console.log('file is ' );
         console.dir(file);
 
-        var uploadUrl = "http://127.0.0.1:5003/api/upload";
+        var uploadUrl = "http://personal-project-1487156523.us-west-2.elb.amazonaws.com/tenant3";
         fileUpload.uploadFileToUrl(file, uploadUrl, function(data){
             console.log("callback from upload");
             console.log(data);
@@ -267,7 +272,7 @@ tenant.controller("tenant4_controller",['$scope','$http', 'fileUpload', '$route'
         console.log('file is ' );
         console.dir(file);
 
-        var uploadUrl = "http://127.0.0.1:5004/api/upload";
+        var uploadUrl = "http://personal-project-1487156523.us-west-2.elb.amazonaws.com/tenant4";
         fileUpload.uploadFileToUrl(file, uploadUrl, function(data){
             console.log("callback from upload");
             console.log(data);

@@ -22,7 +22,7 @@ def ping():
 	return json.dumps({"hello":"world"})
 
 
-@application.route("/api/upload", methods=['POST'])
+@application.route("/tenant3", methods=['POST'])
 def upload():
     print('upload file')
     file = request.files['file']
@@ -56,7 +56,7 @@ def callParser(args,inputfilepath):
     #subprocess.call(['java', '-jar']+list(args))
     application.config['OUTPUT_FOLDER'] = inputfilepath+"/output"
     args= ["java", "-jar", "umlparser.jar" ,"parser/test1", "output.png"]
-    arg_list = ["java", "-jar", "umlnew.jar" ,"class", inputfilepath, "output"]
+    arg_list = ["java", "-jar", "umlfinal.jar" , inputfilepath, "output"]
    
     popen = subprocess.Popen(arg_list, stdout=subprocess.PIPE)
     popen.wait()
